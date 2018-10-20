@@ -21,13 +21,13 @@ public class AlunoRepositoryTest {
 	
 	@Test
 	public void testaAlunoCarlos() {
-		List<Aluno> c = repository.findByNomeContainingIgnoreCase("carlos");
+		List<Aluno> c = repository.findByNomeContainingIgnoreCase("Marcelo");
 		assertThat(c.size()).isGreaterThan(0);
 	}
 	
 	@Test
 	public void testaListaVazia() {
-		List<Aluno> c = repository.findByNomeContainingIgnoreCase("diogo");
+		List<Aluno> c = repository.findByNomeContainingIgnoreCase("Emmett");
 		assertThat(c.size()).isEqualTo(0);
 	}
 
