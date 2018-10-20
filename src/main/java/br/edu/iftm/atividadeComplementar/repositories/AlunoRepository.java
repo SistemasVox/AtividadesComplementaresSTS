@@ -11,6 +11,6 @@ import br.edu.iftm.atividadeComplementar.domains.Aluno;
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno,Long>{
 	
-	public List<Aluno> findByNomeContaining(@Param("nome") String nome);
+	public List<Aluno> findByNomeContainingIgnoreCase(@Param("nome") String nome);
 
 }

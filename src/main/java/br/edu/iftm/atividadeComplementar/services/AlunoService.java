@@ -18,7 +18,7 @@ public class AlunoService {
 	private AlunoRepository repository;
 	
 	public List<Aluno> buscar(String nome) {
-		return repository.findByNomeContaining(nome);
+		return repository.findByNomeContainingIgnoreCase(nome);
 	}
 		
 	public void salvarAtualizar(Aluno aluno) {
