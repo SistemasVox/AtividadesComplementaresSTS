@@ -12,6 +12,6 @@ values ('Participação em Colegiado / Conselho', 10, 1, 100);
 INSERT INTO TB_ATIVIDADE (ATV_NOME, ATV_percentualCargaHoraria, ATV_maximoAtividadesSemestre, ATV_percentualPorAtividade)
 values ('Cursos e Minicursos', 10, 2, 50);
 
-/*
+
 INSERT INTO TB_LANCAMENTO_ATIVIDADE (LANC_QUANTIDADE_HORAS, LANC_DATAINICIO, LANC_DATAFIM, ALUNO_RA, ATIVIDADE_CODIGO)
-values (100, current_date(), current_date() + INTERVAL 1 MONTH, 123456789, 1);*/
+values (100, '2018-10-20', '2018-11-20', 123456789, 1);
