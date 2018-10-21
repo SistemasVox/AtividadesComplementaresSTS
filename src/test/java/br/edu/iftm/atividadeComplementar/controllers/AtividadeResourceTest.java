@@ -41,7 +41,7 @@ public class AtividadeResourceTest {
 	}
 	
 	@Test
-	public void testa01RequisicaoSucesso() throws Exception{
+	public void test01RequisicaoSucesso() throws Exception{
 		String url = "/atividades/1";
 		this.mvc.perform(get(url))
 		.andExpect(status().isOk())
@@ -62,20 +62,20 @@ public class AtividadeResourceTest {
 		.andExpect(status().isOk())
 		.andExpect(content().string(containsString("Monitoria")));
 	}
-	
+		
 	@Test
-	public void test04NomeFalha() throws Exception{
-		String url = "/atividades/like/Marcelo";
+	public void test04RequisicaoLikeFalha() throws Exception{
+		String url = "/atividades/like/Alecsander";
 		this.mvc.perform(get(url))
 		.andExpect(status().isNotFound());
 	}
 	
 	@Test
-	public void testa05DeleteSucesso() throws Exception{
-		String url = "/atividades/1";
+	public void test05DeleteSucesso() throws Exception{
+		String url = "/atividades/2";
 		this.mvc.perform(delete(url))
 		.andExpect(status().isOk())
-		.andExpect(content().string(containsString("1")));
+		.andExpect(content().string(containsString("2")));
 	}
 
 	@Test
@@ -84,7 +84,7 @@ public class AtividadeResourceTest {
 		this.mvc.perform(delete(url))
 		.andExpect(status().isNotFound());
 	}
-	public void testa07SalvarSucesso() throws Exception{
+	public void test07SalvarSucesso() throws Exception{
 		String url = "/atividades";
 		this.mvc.perform(post(url)
 		.content("\"nome\": \"Veneração ao Marcelo\", \"percentualCargaHoraria\": 50, \"maximoAtividadesSemestre\": 1, \"percentualPorAtividade\": 100")
@@ -94,7 +94,7 @@ public class AtividadeResourceTest {
 		.andDo(MockMvcResultHandlers.print());
 	}
 	
-	public void testa08SalvarFalha() throws Exception{
+	public void test08SalvarFalha() throws Exception{
 		String url = "/atividades";
 		this.mvc.perform(post(url)
 		.content("\"n0m3\": \"Veneração ao Marcelo\", \"percentualCargaHoraria\": 50, \"maximoAtividadesSemestre\": 1, \"percentualPorAtividade\": 100")

@@ -19,17 +19,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.iftm.atividadeComplementar.domains.Atividade;
 import br.edu.iftm.atividadeComplementar.repositories.AtividadeRepository;
+import br.edu.iftm.atividadeComplementar.services.AtividadeService;
 
 @RestController
 @RequestMapping(value = "/atividades")
 public class AtividadeResource {
 
 	@Autowired
-	private AtividadeRepository repo;
+	private AtividadeService service;
 
 	@GetMapping(value = "{id}")
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		Optional<Atividade> atividadeOptional = repo.findById(id);
+		Optional<Atividade> atividadeOptional = service.buscarID(id);
 		if (atividadeOptional.isPresent()) {
 			return ResponseEntity.ok(atividadeOptional);
 		} else {
@@ -40,7 +41,7 @@ public class AtividadeResource {
 
 	@GetMapping(value = "like/{nome}")
 	public ResponseEntity<?> findByNome(@PathVariable String nome) {
-		List<Atividade> atividades = repo.findByNomeContainingIgnoreCase(nome);
+		List<Atividade> atividades = service.buscar(nome);
 		if (atividades.size() > 0) {
 			return ResponseEntity.ok(atividades);
 		} else {
@@ -51,17 +52,17 @@ public class AtividadeResource {
 	@DeleteMapping(value = "{id}")
 	public ResponseEntity<?> deleteById(@PathVariable Integer id) {
 		try {
-			repo.deleteById(id);
+			service.excluir(id);
 			return ResponseEntity.ok(id);
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+		
 	@PostMapping
 	public ResponseEntity<?> salvar(@Valid @RequestBody Atividade atividade){
-		Atividade atv = repo.save(atividade);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(atv.getCodigo()).toUri();
+		service.salvarAtualizar(atividade);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(atividade.getCodigo()).toUri();
 		return ResponseEntity.created(location).build();
 		
 	}

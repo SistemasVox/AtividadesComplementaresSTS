@@ -43,10 +43,10 @@ public class AlunoResourceTest {
 	
 	@Test
 	public void teste01RequisicaoIdSucesso() throws Exception {
-		String url = "/alunos/59320492";
+		String url = "/alunos/123456789";
 		this.mvc.perform(get(url))
 		.andExpect(status().isOk())
-		.andExpect(jsonPath("nome",equalTo("carlos eduardo")));
+		.andExpect(jsonPath("nome",equalTo("Marcelo Vieira")));
 	}
 	
 	@Test
@@ -58,10 +58,10 @@ public class AlunoResourceTest {
 	
 	@Test
 	public void teste03RequisicaoLikeSucesso() throws Exception {
-		String url = "/alunos/like/carlos";
+		String url = "/alunos/like/Marcelo";
 		this.mvc.perform(get(url))
 		.andExpect(status().isOk())
-		.andExpect(content().string(containsString("carlos eduardo")));
+		.andExpect(content().string(containsString("Marcelo Vieira")));
 	}
 	
 	@Test
@@ -82,10 +82,10 @@ public class AlunoResourceTest {
 	
 	@Test
 	public void teste06RequisicaoDelete() throws Exception {
-		String url = "/alunos/59320492";
+		String url = "/alunos/132698259";
 		this.mvc.perform(delete(url))
 		.andExpect(status().isOk())
-		.andExpect(content().string(containsString("59320492")));
+		.andExpect(content().string(containsString("132698259")));
 	}
 	
 	@Test
