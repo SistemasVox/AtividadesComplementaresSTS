@@ -6,6 +6,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -84,23 +85,37 @@ public class AtividadeResourceTest {
 		this.mvc.perform(delete(url))
 		.andExpect(status().isNotFound());
 	}
+	
+	@Test
 	public void test07SalvarSucesso() throws Exception{
-		String url = "/atividades";
+		String url = "/atividades/";
 		this.mvc.perform(post(url)
-		.content("\"nome\": \"Veneração ao Marcelo\", \"percentualCargaHoraria\": 50, \"maximoAtividadesSemestre\": 1, \"percentualPorAtividade\": 100")
+		.content("{\"codigo\": 5,\"nome\": \"Zoeira Nerver ENDs\", \"percentualCargaHoraria\": 10, \"maximoAtividadesSemestre\": 2, \"percentualPorAtividade\": 50}")
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated())
 		.andExpect(header().string("Location", is("http://192.168.0.103:8080/atividades/5")))
 		.andDo(MockMvcResultHandlers.print());
 	}
 	
+	@Test
 	public void test08SalvarFalha() throws Exception{
-		String url = "/atividades";
+		String url = "/atividades/";
 		this.mvc.perform(post(url)
 		.content("\"n0m3\": \"Veneração ao Marcelo\", \"percentualCargaHoraria\": 50, \"maximoAtividadesSemestre\": 1, \"percentualPorAtividade\": 100")
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isBadRequest())
 		.andDo(MockMvcResultHandlers.print());
+	}
+	
+	@Test
+	public void teste11PutOk() throws Exception {
+		String url = "/atividades/";
+        
+		this.mvc.perform(put(url)
+				.content("\"nome\": \"Veneração ao Marcelo\", \"percentualCargaHoraria\": 50, \"maximoAtividadesSemestre\": 1, \"percentualPorAtividade\": 100")
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent())
+		        .andDo(MockMvcResultHandlers.print());
 	}
 	
 }

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.iftm.atividadeComplementar.domains.Atividade;
-import br.edu.iftm.atividadeComplementar.repositories.AtividadeRepository;
 import br.edu.iftm.atividadeComplementar.services.AtividadeService;
 
 @RestController
@@ -28,9 +27,9 @@ public class AtividadeResource {
 	@Autowired
 	private AtividadeService service;
 
-	@GetMapping(value = "{id}")
-	public ResponseEntity<?> findById(@PathVariable Integer id) {
-		Optional<Atividade> atividadeOptional = service.buscarID(id);
+	@GetMapping(value = "{codigo}")
+	public ResponseEntity<?> findById(@PathVariable Integer codigo) {
+		Optional<Atividade> atividadeOptional = service.buscarID(codigo);
 		if (atividadeOptional.isPresent()) {
 			return ResponseEntity.ok(atividadeOptional);
 		} else {
@@ -49,22 +48,22 @@ public class AtividadeResource {
 		}
 	}
 
-	@DeleteMapping(value = "{id}")
-	public ResponseEntity<?> deleteById(@PathVariable Integer id) {
+	@DeleteMapping(value = "{codigo}")
+	public ResponseEntity<?> deleteById(@PathVariable Integer codigo) {
 		try {
-			service.excluir(id);
-			return ResponseEntity.ok(id);
+			service.excluir(codigo);
+			return ResponseEntity.ok(codigo);
 		} catch (Exception e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
-		
+			
 	@PostMapping
-	public ResponseEntity<?> salvar(@Valid @RequestBody Atividade atividade){
+	public ResponseEntity<?> salvar(@Valid @RequestBody Atividade atividade) {
 		service.salvarAtualizar(atividade);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/id").buildAndExpand(atividade.getCodigo()).toUri();
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{codigo}")
+		        .buildAndExpand(atividade.getCodigo()).toUri();
 		return ResponseEntity.created(location).build();
-		
 	}
 	
 
