@@ -90,7 +90,7 @@ public class AtividadeResourceTest {
 	public void test07SalvarSucesso() throws Exception{
 		String url = "/atividades/";
 		this.mvc.perform(post(url)
-		.content("{\"codigo\":5,\"nome\":\"Zoeira Nerver ENDs\",\"percentualCargaHoraria\":50,\"maximoAtividadesSemestre\":1,\"percentualPorAtividade\":100}")
+		.content("{\"codigo\": 5,\"nome\": \"Zoeira Nerver ENDs\", \"percentualCargaHoraria\": 10, \"maximoAtividadesSemestre\": 2, \"percentualPorAtividade\": 100}")
 		.contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isCreated())
 		.andExpect(header().string("Location", is("http://localhost:8080/atividades/5")))
