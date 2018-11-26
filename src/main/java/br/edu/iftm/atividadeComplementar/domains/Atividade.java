@@ -24,22 +24,22 @@ public class Atividade implements Serializable {
 	
 	@Column(name = "ATV_NOME", nullable = false)
 	@NotNull(message="Campo Nome precisa ser preenchido")
-	@Size(min=3, message="Nome precisa ter pelo menos 3 caracteres")
+	//@Size(min=3, message="Nome precisa ter pelo menos 3 caracteres")
 	private String nome;
 	
 	@Column(name = "ATV_PERCENTUALCARGAHORARIA")
 	@NotNull(message="Campo percentualCargaHoraria precisa ser preenchido")
-	@Size(min=1, message="percentualCargaHoraria precisa ter pelo menos 1 caracteres")	
+	//@Size(min=1, message="percentualCargaHoraria precisa ter pelo menos 1 caracteres")	
 	private Integer percentualCargaHoraria;
 	
 	@Column(name = "ATV_MAXIMOATIVIDADESSEMESTRE")
 	@NotNull(message="Campo maximoAtividadesSemestre precisa ser preenchido")
-	@Size(min=1, message="maximoAtividadesSemestre precisa ter pelo menos 1 caracteres")	
+	//@Size(min=1, message="maximoAtividadesSemestre precisa ter pelo menos 1 caracteres")	
 	private Integer maximoAtividadesSemestre;
 	
 	@Column(name = "ATV_PERCENTUALPORATIVIDADE")
 	@NotNull(message="Campo percentualPorAtividade precisa ser preenchido")
-	@Size(min=1, message="percentualPorAtividade precisa ter pelo menos 1 caracteres")	
+	//@Size(min=1, message="percentualPorAtividade precisa ter pelo menos 1 caracteres")	
 	private Integer percentualPorAtividade;
 
 	public Atividade(Integer codigo, String nome, Integer percentualCargaHoraria, Integer maximoAtividadesSemestre,
